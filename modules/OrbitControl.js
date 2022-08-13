@@ -3,7 +3,7 @@ function OrbitControl(space) {
 
 	input.listeners.touchDown.push((touches) => {
 		//Cria um clone da posição antiga
-		lastPosition = space.position.clone();
+		lastPosition = {...space.origin};
 
 		input.touch[0].scale = space.scale;
 		input.touch[1].scale = space.scale;
@@ -33,9 +33,9 @@ function OrbitControl(space) {
 			space.scale = lastScale + (tempDistance - distance) * zoomVelocity;
 			if (space.scale < 1e2) space.scale = 1e2;
 		} else {
-			space.position.x = lastPosition.x + (input.touch[0].position.x - input.touch[0].lastPosition.x) * space.scale;
+			space.origin.x = lastPosition.x + (input.touch[0].position.x - input.touch[0].lastPosition.x) * space.scale;
 
-			space.position.y = lastPosition.y + (input.touch[0].position.y - input.touch[0].lastPosition.y) * space.scale;
+			space.origin.y = lastPosition.y - (input.touch[0].position.y - input.touch[0].lastPosition.y) * space.scale;
 		}
 	});
 }

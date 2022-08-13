@@ -5,7 +5,7 @@ canvas.height = window.innerHeight;
 
 window.onload = function() {
 	ctx.translate(canvas.width / 2, canvas.height / 2);
-	ctx.scale(1, -1);
+	ctx.scale(1, 1);
 
 	window.requestAnimationFrame(loop);
 
